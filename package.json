@@ -12,6 +12,7 @@
   },
   "homepage": "https://github.com/Entkenntnis/serlo-content-checker#readme",
   "dependencies": {
+    "katex": "^0.12.0",
     "node-fetch": "^2.6.1"
   }
 }

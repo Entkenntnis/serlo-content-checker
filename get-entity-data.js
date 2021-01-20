@@ -35,7 +35,7 @@ run()
 async function run() {
   for (const entry of todoList) {
     let retryCounter = 0
-    while (retryCounter < 2) {
+    while (retryCounter < 1) {
       try {
         await getEntity(entry)
         break
