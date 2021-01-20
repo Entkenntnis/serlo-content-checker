@@ -1,0 +1,17 @@
+{
+  "name": "serlo-content-checker",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Entkenntnis/serlo-content-checker.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Entkenntnis/serlo-content-checker/issues"
+  },
+  "homepage": "https://github.com/Entkenntnis/serlo-content-checker#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
