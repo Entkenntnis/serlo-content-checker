@@ -39,24 +39,26 @@ function checkKatex(formula, source, entity, id) {
   }
   let formulaWorking = false
   let sourceWorking = false
-  let message = ''
+  let message1 = ''
+  let message2 = ''
   try {
     katex.renderToString(formula)
     formulaWorking = true
   } catch (e) {
-    message = e.message
+    message1 = e.message
   }
   try {
     katex.renderToString(source)
     sourceWorking = true
   } catch (e) {
     console.log(e.message)
+    message2 = e.message
   }
   if (sourceWorking && !formulaWorking) {
     sanitizerFail.push({
       formula,
       source,
-      message,
+      message: message1,
       id,
       converted: entity.converted,
       type: entity.data.typename
@@ -66,7 +68,7 @@ function checkKatex(formula, source, entity, id) {
     brokenFormulas.push({
       formula,
       source,
-      message,
+      message: message2,
       id,
       converted: entity.converted,
       type: entity.data.typename
