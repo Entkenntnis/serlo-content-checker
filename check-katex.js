@@ -2,6 +2,7 @@ const { store, headVersion } = require('./entity_data_store.json')
 
 const walk = require('./utils/content-walker')
 const escape = require('./utils/html-escape')
+const generateReport = require('./utils/generate-report')
 
 const katex = require('katex')
 
@@ -83,35 +84,18 @@ brokenFormulas.sort((a, b) => {
   else return b.id - a.id
 })
 
-const html = `
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Defekte Formeln</title>
-  </head>
-  <body>
-    <table border="1">
-      <tr>
-        <th>Nr</th>
-        <th>Inhalt</th>
-        <th>Formel</th>
-        <th>Fehler</th>
-      </tr>
-    ${brokenFormulas.map((row, index) => `
-      <tr>
-        <td>${index + 1}</td>
-        <td>
-          ${row.type}:
-          <a href="https://frontend.serlo.org/${row.id}">${row.id}</a>
-          ${row.converted ? '' : '[legacy]'}
-        </td>
-        <td><code>${escape(row.source)}</code></td>
-        <td>${escape(row.message)}</td>
-      </tr>
-    `).join('')}
-    </table>
-  </body>
-</html>`
+generateReport(
+  './reports/katex.html',
+  'Defekte Formeln',
+  ['Inhalt', 'Formel', 'Fehler'],
+  [
+    row => `${row.type}:
+      <a href="https://frontend.serlo.org/${row.id}">${row.id}</a>
+      ${row.converted ? '' : '[legacy]'}`,
+    row => `<code>${escape(row.source)}</code>`,
+    row => escape(row.message)
+  ],
+  brokenFormulas
+)
 
-require('fs').writeFileSync('./reports/katex.html', html)
+console.log(sanitizerFail)

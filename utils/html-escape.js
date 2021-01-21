@@ -1,9 +1,9 @@
 const htmlEscapes = {
-  '&': '&amp',
-  '<': '&lt',
-  '>': '&gt',
-  '"': '&quot',
-  "'": '&#39'
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
 }
 
 const reUnescapedHtml = /[&<>"']/g
